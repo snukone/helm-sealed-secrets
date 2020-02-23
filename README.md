@@ -74,6 +74,14 @@ kubeseal \
  --controller-namespace=default \
  --format [json|yaml] --cert mycert.pem > mysealedsecret.[json|yaml]
 
+BEISPIEL:
+
+kubectl create secret generic MEINNAME-sealed-secret --dry-run --from-literal=password=HIERPASSWORD -o yaml | \
+ kubeseal \
+ --controller-name=sealed-secrets \
+ --controller-namespace=default \
+ --format yaml > MEINNAME-sealed-secret.yaml
+
 3. Apply the sealed secret
 
 kubectl create -f mysealedsecret.[json|yaml]
